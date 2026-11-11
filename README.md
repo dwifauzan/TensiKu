@@ -1,59 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TensiKu
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+TensiKu adalah aplikasi web sederhana untuk mencatat dan memantau tekanan darah.
+Pengguna cukup memasukkan angka **sistolik** dan **diastolik**, lalu sistem otomatis
+menampilkan status (normal sampai hipertensi), riwayat pengukuran, dan grafik tren.
 
-## About Laravel
+> ⚠️ TensiKu hanya alat bantu pencatatan, bukan pengganti diagnosis dokter.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Fitur
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Akun pengguna** — register, login, dan logout.
+- **Dashboard** — lihat pengukuran terakhir, status, dan grafik singkat.
+- **Tambah pengukuran** — isi tanggal, sistolik, diastolik, serta nadi & catatan (opsional).
+- **Status otomatis** — sistem menghitung kategori tekanan darah dengan warna penanda.
+- **Riwayat** — lihat, edit, dan hapus data lama, lengkap dengan grafik tren.
+- **Tips kesehatan** — saran ringan untuk menjaga tekanan darah tetap sehat.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Kategori Status
 
-## Learning Laravel
+| Status               | Sistolik (mmHg) |      | Diastolik (mmHg) | Warna     |
+| -------------------- | --------------- | ---- | ---------------- | --------- |
+| Normal               | < 120           | dan  | < 80             | 🟢 Hijau  |
+| Meningkat            | 120 – 129       | dan  | < 80             | 🟡 Kuning |
+| Hipertensi Tahap 1   | 130 – 139       | atau | 80 – 89          | 🟠 Oranye |
+| Hipertensi Tahap 2   | ≥ 140           | atau | ≥ 90             | 🔴 Merah  |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Jika sistolik dan diastolik jatuh di kategori berbeda, yang dipakai adalah kategori yang lebih tinggi.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Alur Aplikasi
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+1. Buka **Welcome page**.
+2. **Register** atau **Login**.
+3. Masuk ke **Dashboard** — lihat pengukuran terakhir, status, dan grafik.
+4. Klik **"Tambah Pengukuran"**.
+5. Isi form: tanggal, sistolik, diastolik (nadi & catatan opsional).
+6. **Simpan** → sistem validasi input → hitung status otomatis.
+7. Kembali ke Dashboard, status baru muncul sesuai warnanya.
+8. Buka **Riwayat** untuk lihat, edit, atau hapus data lama + grafik tren.
+9. Buka **Tips** untuk membaca saran kesehatan.
+10. **Logout**.
 
-## Agentic Development
+## Teknologi
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- [Laravel 13](https://laravel.com) (PHP 8.3+)
+- [Tailwind CSS 4](https://tailwindcss.com) + [Vite](https://vite.dev)
+- Database: SQLite / MySQL
+
+## Instalasi
 
 ```bash
-composer require laravel/boost --dev
+git clone <url-repo> tensiku
+cd tensiku
 
-php artisan boost:install
+composer install
+npm install
+
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+
+composer run dev
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Buka `http://localhost:8000` di browser.
 
-## Contributing
+## Lisensi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# TensiKu
+Proyek ini menggunakan lisensi [MIT](https://opensource.org/licenses/MIT).
