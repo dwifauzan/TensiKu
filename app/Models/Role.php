@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Models;
+
+use Database\Factories\RoleFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Table;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+#[Table(name: 'role', key: 'id_role', timestamps: false)]
+#[Fillable(['nama_role'])]
+class Role extends Model
+{
+    /** @use HasFactory<RoleFactory> */
+    use HasFactory;
+
+    /**
+     * Role name given to everyone who signs up.
+     */
+    public const string Pengguna = 'pengguna';
+
+    /**
+     * Role name for administrators.
+     */
+    public const string Admin = 'admin';
+
+    /**
+     * @return HasMany<User, $this>
+     */
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class, 'id_role', 'id_role');
+    }
+}
