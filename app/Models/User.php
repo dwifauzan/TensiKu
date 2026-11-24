@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['nama', 'email', 'password', 'is_active', 'id_role'])]
 #[Hidden(['password', 'remember_token'])]
@@ -51,5 +52,10 @@ class User extends Authenticatable
             ->take(2)
             ->map(fn (string $word): string => mb_strtoupper(mb_substr($word, 0, 1)))
             ->implode('');
+    }
+
+    public function obat(): HasMany
+    {
+        return $this->hasMany(Obat::class, 'pengguna_id');
     }
 }

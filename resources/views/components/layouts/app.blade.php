@@ -7,15 +7,14 @@
                 <x-brand class="self-center" />
 
                 <a
-                    href="{{ route('dashboard') }}"
-                    @if (request()->routeIs('dashboard')) aria-current="page" @endif
+                    href="{{ route('obat.index') }}"
                     @class([
                         'flex items-center border-b-2 pt-0.5 text-sm font-semibold transition-colors',
-                        'border-cuff text-ink' => request()->routeIs('dashboard'),
-                        'border-transparent text-muted hover:text-ink' => ! request()->routeIs('dashboard'),
+                        'border-cuff text-ink' => request()->routeIs('obat.*'),
+                        'border-transparent text-muted hover:text-ink' => ! request()->routeIs('obat.*'),
                     ])
                 >
-                    Dashboard
+                    Catatan Obat
                 </a>
             </div>
 
