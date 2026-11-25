@@ -16,6 +16,17 @@
                 >
                     Catatan Obat
                 </a>
+
+                <a
+                    href="{{ route('tips.index') }}"
+                    @class([
+                        'flex items-center border-b-2 pt-0.5 text-sm font-semibold transition-colors',
+                        'border-cuff text-ink' => request()->routeIs('tips.*') || request()->routeIs('admin.tips.*'),
+                        'border-transparent text-muted hover:text-ink' => ! (request()->routeIs('tips.*') || request()->routeIs('admin.tips.*')),
+                    ])
+                >
+                    Tips Kesehatan
+                </a>
             </div>
 
             <x-profile-dropdown :user="auth()->user()" class="self-center" />

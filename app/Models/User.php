@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Obat::class, 'pengguna_id');
     }
+
+    public function isAdmin(): bool
+    {
+        return $this->role?->nama_role === Role::Admin;
+    }
 }
