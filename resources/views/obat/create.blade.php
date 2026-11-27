@@ -1,7 +1,7 @@
 
 <x-layouts.app title="Tambah Obat">
     <h1 class="text-3xl font-bold">Tambah Obat</h1>
-    <p class="mt-2 text-muted">Masukkan informasi obat.</p>
+    <p class="mt-2 text-muted">Isi nama, dosis, cara dan jadwal minum obat sesuai resep atau kemasan. Kolom bertanda opsional boleh dikosongkan.</p>
 
     <form action="{{ route('obat.store') }}" method="POST"
           class="mt-8 space-y-5 rounded-xl border border-line bg-white p-6">
