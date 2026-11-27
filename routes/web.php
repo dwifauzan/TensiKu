@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\TipController as AdminTipController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ObatController;
+use App\Http\Controllers\TipController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
@@ -33,6 +35,13 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('obat/{obat}/selesai', [ObatController::class, 'selesai'])
         ->name('obat.selesai');
+
+    Route::get('tips', [TipController::class, 'index'])->name('tips.index');
+    Route::get('tips/{tip}', [TipController::class, 'show'])->name('tips.show');
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('tips', AdminTipController::class)->except(['show']);
+    });
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
